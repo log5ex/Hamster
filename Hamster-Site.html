@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хомяк-кликер</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin: 20px 0;
+            color: #333;
+        }
+        #coin-counter {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #555;
+        }
+        #hamster-btn {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/73/Hamster_in_a_ball.jpg') no-repeat center;
+            background-size: cover;
+            width: 200px;
+            height: 200px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+        #hamster-btn:active {
+            transform: scale(0.95);
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Хомяк-кликер</h1>
+    <div id="coin-counter">Ваши койны: 0</div>
+    <button id="hamster-btn" title="Нажми на хомяка"></button>
+    <footer>Соберите как можно больше койнов! 🐹</footer>
+
+    <script>
+        // Локальное хранилище койнов
+        let coins = localStorage.getItem('coins') ? parseInt(localStorage.getItem('coins')) : 0;
+
+        // Обновление счётчика койнов
+        const coinCounter = document.getElementById('coin-counter');
+        const updateCoinCounter = () => {
+            coinCounter.textContent = `Ваши койны: ${coins}`;
+        };
+
+        // Логика нажатия кнопки
+        const hamsterButton = document.getElementById('hamster-btn');
+        hamsterButton.addEventListener('click', () => {
+            coins++;
+            localStorage.setItem('coins', coins);
+            updateCoinCounter();
+        });
+
+        // Инициализация
+        updateCoinCounter();
+    </script>
+</body>
+</html>
